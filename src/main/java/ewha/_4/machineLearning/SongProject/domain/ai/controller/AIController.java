@@ -20,3 +20,4 @@ public class AIController {
         return aiService.getMusicSeggestion(requestDto);
     }
 }
+

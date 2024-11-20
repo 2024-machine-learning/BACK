@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AIService {
 
-
     /*노래 추천 결과 반환 */
     public ResponseEntity getMusicSeggestion(AIRequestDto requestDto) {
         return ResponseEntity.status(HttpStatus.CREATED)
