@@ -23,22 +23,12 @@ public class AIService {
     public ResponseEntity getMusicSeggestion(AIRequestDto requestDto) {
         try {
 
-            /* FastApi 로 전달할 요청 데이터 생성 : json 타입으로 */
-            ObjectMapper mapper = new ObjectMapper();
-            String requestJson = mapper.writeValueAsString(Map.of("content", requestDto.getNovelContent()));
-
-            /* json 형식으로 요청을 보낼 것임. */
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.APPLICATION_JSON);
-
-            HttpEntity<String> requestEntity = new HttpEntity<>(requestJson, headers);
-
             /* fast api 호출 */
-            ResponseEntity<String> response = restTemplate.exchange(
-                    fastApiUrl, HttpMethod.POST, requestEntity, String.class);
+            ResponseEntity<String> response = restTemplate.postForEntity(fastApiUrl, requestDto, String.class);
 
             /* fast api 응답 반환 */
-            return ResponseEntity.ok(mapper.readValue(response.getBody(), Object.class));
+            return ResponseEntity.status(HttpStatus.CREATED)
+                    .body(response.getBody());
 
         } catch (Exception e){
 

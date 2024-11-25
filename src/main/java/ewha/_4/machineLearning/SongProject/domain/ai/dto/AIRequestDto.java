@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access =  AccessLevel.PROTECTED)
 public class AIRequestDto {
-
+    private String novelTitle;
     private String novelContent;
 
 }
